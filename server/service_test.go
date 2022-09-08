@@ -478,7 +478,7 @@ func TestGetPayload(t *testing.T) {
 	})
 
 	t.Run("Bad response from relays", func(t *testing.T) {
-		backend := newTestBackend(t, 2, time.Second)
+		backend := newTestBackend(t, 2, 2*time.Second)
 		resp := new(types.GetPayloadResponse)
 
 		// 1/2 failing responses are okay
@@ -501,7 +501,7 @@ func TestGetPayload(t *testing.T) {
 
 func TestCheckRelays(t *testing.T) {
 	t.Run("At least one relay is okay", func(t *testing.T) {
-		backend := newTestBackend(t, 3, time.Second)
+		backend := newTestBackend(t, 3, 2*time.Second)
 		status := backend.boost.CheckRelays()
 		require.Equal(t, true, status)
 	})
